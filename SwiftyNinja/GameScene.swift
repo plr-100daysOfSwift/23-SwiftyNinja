@@ -23,6 +23,8 @@ class GameScene: SKScene {
 	var activeSliceBG: SKShapeNode!
 	var activeSliceFG: SKShapeNode!
 
+	var activeSlicePoints = [CGPoint]()
+
 	override func didMove(to view: SKView) {
 
 		let background = SKSpriteNode(imageNamed: "sliceBackground")
