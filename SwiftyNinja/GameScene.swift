@@ -20,6 +20,22 @@ class GameScene: SKScene {
 		physicsWorld.gravity = CGVector(dx: 0, dy: -6)
 		physicsWorld.speed = 0.85
 
+		createScore()
+		createLives()
+		createSlices()
+		
+	}
+
+	func createScore() {
+
+	}
+
+	func createLives() {
+
+	}
+
+	func createSlices() {
+
 	}
 
 }
