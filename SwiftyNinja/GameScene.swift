@@ -77,4 +77,7 @@ class GameScene: SKScene {
 		addChild(activeSliceFG)
 	}
 
+	func redrawActiveSlice() {
+
+	}
 }
