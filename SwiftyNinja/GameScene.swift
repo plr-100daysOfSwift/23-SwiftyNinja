@@ -16,7 +16,10 @@ class GameScene: SKScene {
 		background.blendMode = .replace
 		background.zPosition = -1
 		addChild(background)
-		
+
+		physicsWorld.gravity = CGVector(dx: 0, dy: -6)
+		physicsWorld.speed = 0.85
+
 	}
 
 }
