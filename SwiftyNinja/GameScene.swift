@@ -9,6 +9,17 @@ import SpriteKit
 
 class GameScene: SKScene {
 
+	var gameScore: SKLabelNode!
+
+	var score = 0 {
+		didSet {
+			gameScore.text = "Score: \(score)"
+		}
+	}
+
+	var livesImages = [SKSpriteNode]()
+	var lives = 3
+
 	override func didMove(to view: SKView) {
 
 		let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -23,7 +34,7 @@ class GameScene: SKScene {
 		createScore()
 		createLives()
 		createSlices()
-		
+
 	}
 
 	func createScore() {
