@@ -77,6 +77,22 @@ class GameScene: SKScene {
 		addChild(activeSliceFG)
 	}
 
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		guard let touch = touches.first else { return }
+		activeSlicePoints.removeAll(keepingCapacity: true)
+
+		let location = touch.location(in: self)
+		activeSlicePoints.append(location)
+
+		redrawActiveSlice()
+
+		activeSliceBG.removeAllActions()
+		activeSliceFG.removeAllActions()
+
+		activeSliceBG.alpha = 1
+		activeSliceFG.alpha = 1
+	}
+
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		guard let touch = touches.first else { return }
 		let location = touch.location(in: self)
@@ -88,7 +104,7 @@ class GameScene: SKScene {
 		activeSliceBG.run(SKAction.fadeOut(withDuration: 0.25))
 		activeSliceFG.run(SKAction.fadeOut(withDuration: 0.25))
 	}
-	
+
 	func redrawActiveSlice() {
 
 	}
