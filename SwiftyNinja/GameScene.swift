@@ -8,6 +8,10 @@
 import SpriteKit
 import AVFoundation
 
+enum SequenceType: CaseIterable {
+	case oneNoBomb, one, twoOneBomb, two, three, four, five, chain, fastChain
+}
+
 enum ForceBomb {
 	case never, always, random
 }
