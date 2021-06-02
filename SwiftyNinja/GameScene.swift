@@ -7,6 +7,10 @@
 
 import SpriteKit
 
+enum ForceBomb {
+	case never, always, random
+}
+
 class GameScene: SKScene {
 
 	var gameScore: SKLabelNode!
