@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 enum ForceBomb {
 	case never, always, random
@@ -30,6 +31,8 @@ class GameScene: SKScene {
 	var activeSlicePoints = [CGPoint]()
 
 	var isSwooshSoundActive = false
+
+	var bombSoundEffect: AVAudioPlayer?
 
 	var activeEnemies = [SKSpriteNode]()
 
