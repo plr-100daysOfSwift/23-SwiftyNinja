@@ -31,6 +31,8 @@ class GameScene: SKScene {
 
 	var isSwooshSoundActive = false
 
+	var activeEnemies = [SKSpriteNode]()
+
 	override func didMove(to view: SKView) {
 
 		let background = SKSpriteNode(imageNamed: "sliceBackground")
