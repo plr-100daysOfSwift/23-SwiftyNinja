@@ -40,19 +40,10 @@ class GameScene: SKScene {
 
 	var activeEnemies = [SKSpriteNode]()
 
-//	The popupTime property is the amount of time to wait between the last enemy being destroyed and a new one being created.
 	var popupTime = 0.9
-
-//	The sequence property is an array of our SequenceType enum that defines what enemies to create.
 	var sequence = [SequenceType]()
-
-//	The sequencePosition property is where we are right now in the game.
 	var sequencePosition = 0
-
-//	The chainDelay property is how long to wait before creating a new enemy when the sequence type is .chain or .fastChain. Enemy chains don't wait until the previous enemy is offscreen before creating a new one, so it's like throwing five enemies quickly but with a small delay between each one.
 	var chainDelay = 3.0
-
-//	The nextSequenceQueued property is used so we know when all the enemies are destroyed and we're ready to create more.
 	var nextSequenceQueued = true
 
 	override func didMove(to view: SKView) {
