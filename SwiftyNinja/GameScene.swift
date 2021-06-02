@@ -242,13 +242,64 @@ class GameScene: SKScene {
 		for node in activeEnemies {
 			if node.name == "bombContainer" {
 				bombCount += 1
-			break
+				break
 			}
 		}
 		if bombCount == 0 {
 			bombSoundEffect?.stop()
 			bombSoundEffect = nil
 		}
+	}
+
+	func tossEnemies() {
+		popupTime *= 0.991
+		chainDelay *= 0.99
+		physicsWorld.speed *= 1.02
+
+		let sequenceType = sequence[sequencePosition]
+
+		switch sequenceType {
+		case .oneNoBomb:
+			createEnemy(forceBomb: .never)
+		case .one:
+			createEnemy()
+		case .twoOneBomb:
+			createEnemy()
+			createEnemy(forceBomb: .always)
+		case .two:
+			createEnemy()
+			createEnemy()
+		case .three:
+			createEnemy()
+			createEnemy()
+			createEnemy()
+		case .four:
+			createEnemy()
+			createEnemy()
+			createEnemy()
+			createEnemy()
+		case .five:
+			createEnemy()
+			createEnemy()
+			createEnemy()
+			createEnemy()
+			createEnemy()
+		case .chain:
+			createEnemy()
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0)) { [weak self] in self?.createEnemy() }
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0 * 2)) { [weak self] in self?.createEnemy() }
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0 * 3)) { [weak self] in self?.createEnemy() }
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0 * 4)) { [weak self] in self?.createEnemy() }
+		case .fastChain:
+			createEnemy()
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0)) { [weak self] in self?.createEnemy() }
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0 * 2)) { [weak self] in self?.createEnemy() }
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0 * 3)) { [weak self] in self?.createEnemy() }
+			DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0 * 4)) { [weak self] in self?.createEnemy() }
+		}
+
+		sequencePosition += 1
+		nextSequenceQueued = false
 	}
 	
 }
