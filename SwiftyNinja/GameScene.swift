@@ -169,7 +169,7 @@ class GameScene: SKScene {
 				if let index = activeEnemies.firstIndex(of: node) {
 					activeEnemies.remove(at: index)
 				}
-				run(SKAction.playSoundFileNamed("shack.caf", waitForCompletion: false))
+				run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
 			} else if node.name == "bomb" {
 				guard let bombContainer = node.parent as? SKSpriteNode else { continue }
 				if let emitter = SKEmitterNode(fileNamed: "sliceHitBomb") {
@@ -441,7 +441,7 @@ class GameScene: SKScene {
 
 	func subtractLife() {
 		lives -= 1
-		run(SKAction.playSoundFileNamed("wromg.caf", waitForCompletion: false))
+		run(SKAction.playSoundFileNamed("wrong.caf", waitForCompletion: false))
 
 		var life: SKSpriteNode
 
