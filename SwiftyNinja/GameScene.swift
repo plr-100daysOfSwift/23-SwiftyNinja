@@ -95,8 +95,18 @@ class GameScene: SKScene {
 		if activeEnemies.count > 0 {
 			for (index, node) in activeEnemies.enumerated().reversed() {
 				if node.position.y < -140 {
-					node.removeFromParent()
-					activeEnemies.remove(at: index)
+					node.removeAllActions()
+
+					if node.name == "enemy" {
+						node.name = ""
+						subtractLife()
+						node.removeFromParent()
+						activeEnemies.remove(at: index)
+					} else if node.name = "bombContainer" {
+						node.name = ""
+						node.removeFromParent()
+						activeEnemies.remove(at: index)
+					}
 				}
 			}
 		} else {
@@ -383,4 +393,7 @@ class GameScene: SKScene {
 
 	}
 
+	func subtractLife() {
+
+	}
 }
