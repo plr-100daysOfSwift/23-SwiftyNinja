@@ -185,7 +185,7 @@ class GameScene: SKScene {
 					activeEnemies.remove(at: index)
 				}
 				run(SKAction.playSoundFileNamed("explosion.caf", waitForCompletion: false))
-				endGame()
+				endGame(triggeredByBomb: true)
 			}
 		}
 	}
@@ -389,7 +389,7 @@ class GameScene: SKScene {
 		nextSequenceQueued = false
 	}
 
-	func endGame() {
+	func endGame(triggeredByBomb: Bool) {
 
 	}
 
@@ -405,7 +405,7 @@ class GameScene: SKScene {
 			life = livesImages[1]
 		} else {
 			life = livesImages[2]
-			endGame()
+			endGame(triggeredByBomb: false)
 		}
 
 		life.texture = SKTexture(imageNamed: "sliceLifeGone")
