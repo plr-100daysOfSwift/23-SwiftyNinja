@@ -395,5 +395,29 @@ class GameScene: SKScene {
 
 	func subtractLife() {
 
+//		subtract 1 from the lives property
+		lives -= 1
+
+//  play a sound
+		run(SKAction.playSoundFileNamed("wromg.caf", waitForCompletion: false))
+
+//		update the images in the livesImages array so that the correct number are crossed off,
+		var life: SKSpriteNode
+		if lives == 2 {
+			life = livesImages[0]
+		} else if lives == 1 {
+			life = livesImages[1]
+		} else {
+			life = livesImages[2]
+//		end the game if the player is out of lives.
+			endGame()
+		}
+
+		life.texture = SKTexture(imageNamed: "sliceLifeGone")
+//		animate the life being lost – we'll set the X and Y scale of the life being lost to 1.3, then animate it back down to 1.0.
+		life.xScale = 1.3
+		life.yScale = 1.3
+		life.run(SKAction.scale(to: 1.0, duration: 0.2))
 	}
+	
 }
