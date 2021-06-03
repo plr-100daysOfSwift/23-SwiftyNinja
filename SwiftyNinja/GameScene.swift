@@ -148,7 +148,7 @@ class GameScene: SKScene {
 				node.name = ""
 				node.physicsBody?.isDynamic = false
 				let scaleOut = SKAction.scale(to: 0.001, duration: 0.2)
-				let fadeOut = SKAction.fadeAlpha(to: 0, duration: 0.2)
+				let fadeOut = SKAction.fadeOut(withDuration: 0.2)
 				let group = SKAction.group([scaleOut, fadeOut])
 				let seq = SKAction.sequence([group, .removeFromParent()])
 				node.run(seq)
