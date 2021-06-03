@@ -46,6 +46,8 @@ class GameScene: SKScene {
 	var chainDelay = 3.0
 	var nextSequenceQueued = true
 
+	var isGameEnded = false
+
 	// MARK:- Life Cycle
 
 	override func didMove(to view: SKView) {
@@ -138,6 +140,7 @@ class GameScene: SKScene {
 	}
 
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		guard !isGameEnded else { return }
 		guard let touch = touches.first else { return }
 		let location = touch.location(in: self)
 		activeSlicePoints.append(location)
@@ -339,6 +342,8 @@ class GameScene: SKScene {
 	}
 
 	func tossEnemies() {
+		guard !isGameEnded else { return }
+
 		popupTime *= 0.991
 		chainDelay *= 0.99
 		physicsWorld.speed *= 1.02
@@ -390,6 +395,7 @@ class GameScene: SKScene {
 	}
 
 	func endGame(triggeredByBomb: Bool) {
+		guard !isGameEnded else { return }
 
 	}
 
