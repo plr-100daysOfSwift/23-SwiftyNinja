@@ -158,10 +158,7 @@ class GameScene: SKScene {
 				}
 				run(SKAction.playSoundFileNamed("shack.caf", waitForCompletion: false))
 			} else if node.name == "bomb" {
-//				The node called "bomb" is the bomb image, which is inside the bomb container. So, we need to reference the node's parent when looking up our position, changing the physics body, removing the node from the scene, and removing the node from our activeEnemies array..
 				guard let bombContainer = node.parent as? SKSpriteNode else { continue }
-
-//				I'm going to create a different particle effect for bombs than for penguins.
 				if let emitter = SKEmitterNode(fileNamed: "sliceHitBomb") {
 					emitter.position = node.position
 					addChild(emitter)
@@ -178,7 +175,6 @@ class GameScene: SKScene {
 					activeEnemies.remove(at: index)
 				}
 				run(SKAction.playSoundFileNamed("explosion.caf", waitForCompletion: false))
-				//				We end by calling the (as yet unwritten) method endGame().
 				endGame()
 			}
 		}
