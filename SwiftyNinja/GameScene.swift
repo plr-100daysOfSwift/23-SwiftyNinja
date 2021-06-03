@@ -61,6 +61,18 @@ class GameScene: SKScene {
 		createLives()
 		createSlices()
 
+		sequence = [.oneNoBomb, .oneNoBomb, .twoOneBomb, .twoOneBomb, .three, .one, .chain]
+
+		for _ in 0 ... 1000 {
+			if let nextSequence = SequenceType.allCases.randomElement() {
+				sequence.append(nextSequence)
+			}
+		}
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+			self?.tossEnemies()
+		}
+
 	}
 
 	func createScore() {
@@ -301,5 +313,5 @@ class GameScene: SKScene {
 		sequencePosition += 1
 		nextSequenceQueued = false
 	}
-	
+
 }
