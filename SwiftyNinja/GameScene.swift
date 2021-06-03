@@ -46,6 +46,8 @@ class GameScene: SKScene {
 	var chainDelay = 3.0
 	var nextSequenceQueued = true
 
+	// MARK:- Life Cycle
+
 	override func didMove(to view: SKView) {
 
 		let background = SKSpriteNode(imageNamed: "sliceBackground")
@@ -74,6 +76,40 @@ class GameScene: SKScene {
 		}
 
 	}
+	
+	override func update(_ currentTime: TimeInterval) {
+		var bombCount = 0
+
+		for node in activeEnemies {
+			if node.name == "bombContainer" {
+				bombCount += 1
+				break
+			}
+		}
+
+		if bombCount == 0 {
+			bombSoundEffect?.stop()
+			bombSoundEffect = nil
+		}
+
+		if activeEnemies.count > 0 {
+			for (index, node) in activeEnemies.enumerated().reversed() {
+				if node.position.y < -140 {
+					node.removeFromParent()
+					activeEnemies.remove(at: index)
+				}
+			}
+		} else {
+			if !nextSequenceQueued {
+				DispatchQueue.main.asyncAfter(deadline: .now() + popupTime) { [weak self] in
+					self?.tossEnemies()
+				}
+				nextSequenceQueued = true
+			}
+		}
+	}
+
+	// MARK:-
 
 	func createScore() {
 		gameScore = SKLabelNode(fontNamed: "Chalkduster")
@@ -246,21 +282,6 @@ class GameScene: SKScene {
 		addChild(enemy)
 		activeEnemies.append(enemy)
 
-	}
-
-	override func update(_ currentTime: TimeInterval) {
-		var bombCount = 0
-
-		for node in activeEnemies {
-			if node.name == "bombContainer" {
-				bombCount += 1
-				break
-			}
-		}
-		if bombCount == 0 {
-			bombSoundEffect?.stop()
-			bombSoundEffect = nil
-		}
 	}
 
 	func tossEnemies() {
