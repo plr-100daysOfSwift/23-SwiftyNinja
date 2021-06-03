@@ -312,16 +312,18 @@ class GameScene: SKScene {
 		enemy.position = randomPosition
 
 		let randomXVelocity: Int
-
-		if randomPosition.x < 256 {
-			randomXVelocity = Int.random(in: 8 ... 15)
-		} else if randomPosition.x < 512 {
-			randomXVelocity = Int.random(in: 3 ... 5)
-		} else if randomPosition.x < 768 {
-			randomXVelocity = -Int.random(in: 3 ... 5)
-		} else {
-			randomXVelocity = -Int.random(in: 8 ... 15)
 		let randomYVelocity = Int.random(in: randomYVelocityMin ... randomYVelocityMax)
+
+		let x = randomPosition.x
+		switch x {
+		case _ where x < (sceneWidth / 4):
+			randomXVelocity = Int.random(in: randomXVelocityRangeHigh)
+		case _ where x < (sceneWidth / 2):
+			randomXVelocity = Int.random(in: randomXVelocityRangeLow)
+		case _ where x < (sceneWidth / 4 * 3):
+			randomXVelocity = -Int.random(in: randomXVelocityRangeLow)
+		default:
+			randomXVelocity = -Int.random(in: randomXVelocityRangeHigh)
 		}
 
 		enemy.physicsBody?.velocity = CGVector(dx: randomXVelocity * velocityFactor, dy: randomYVelocity * velocityFactor)
