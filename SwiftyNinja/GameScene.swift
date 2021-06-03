@@ -397,6 +397,18 @@ class GameScene: SKScene {
 	func endGame(triggeredByBomb: Bool) {
 		guard !isGameEnded else { return }
 
+		isGameEnded = true
+		physicsWorld.speed = 0
+		isUserInteractionEnabled = false
+
+		bombSoundEffect?.stop()
+		bombSoundEffect = nil
+
+		if triggeredByBomb {
+			livesImages[0].texture = SKTexture(imageNamed: "sliceLifeGone")
+			livesImages[1].texture = SKTexture(imageNamed: "sliceLifeGone")
+			livesImages[2].texture = SKTexture(imageNamed: "sliceLifeGone")
+		}
 	}
 
 	func subtractLife() {
