@@ -136,6 +136,16 @@ class GameScene: SKScene {
 		if !isSwooshSoundActive {
 			playSwooshSound()
 		}
+
+		let nodesAtPosition = nodes(at: location)
+
+		for case let node as SKSpriteNode in nodesAtPosition {
+				// destroy enemy
+			if node.name == "enemy" {
+			} else if node.name == "bomb" {
+				// destroy bomb
+			}
+		}
 	}
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
