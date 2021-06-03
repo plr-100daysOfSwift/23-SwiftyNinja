@@ -102,7 +102,7 @@ class GameScene: SKScene {
 						subtractLife()
 						node.removeFromParent()
 						activeEnemies.remove(at: index)
-					} else if node.name = "bombContainer" {
+					} else if node.name == "bombContainer" {
 						node.name = ""
 						node.removeFromParent()
 						activeEnemies.remove(at: index)
