@@ -439,6 +439,8 @@ class GameScene: SKScene {
 	}
 
 	func subtractLife() {
+		guard !isGameEnded else { return }
+
 		lives -= 1
 		run(SKAction.playSoundFileNamed("wrong.caf", waitForCompletion: false))
 
