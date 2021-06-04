@@ -162,7 +162,7 @@ class GameScene: SKScene {
 				node.name = ""
 				node.physicsBody?.isDynamic = false
 				let scaleOut = SKAction.scale(to: 0.001, duration: 0.2)
-				let fadeOut = SKAction.fadeOut(withDuration: 0.2)
+				let fadeOut = SKAction.fadeOut(withDuration: 0.3)
 				let group = SKAction.group([scaleOut, fadeOut])
 				let seq = SKAction.sequence([group, .removeFromParent()])
 				node.run(seq)
@@ -179,8 +179,8 @@ class GameScene: SKScene {
 
 				node.name = ""
 				bombContainer.physicsBody?.isDynamic = false
-				let fadeOut = SKAction.fadeOut(withDuration: 0.2)
 				let scaleOut = SKAction.scale(to: 1.3, duration: 0.3)
+				let fadeOut = SKAction.fadeOut(withDuration: 0.3)
 				let group = SKAction.group([scaleOut, fadeOut])
 				let seq = SKAction.sequence([group, .removeFromParent()])
 				bombContainer.run(seq)
