@@ -278,7 +278,7 @@ class GameScene: SKScene {
 		let randomXVelocityRangeLow = 3 ... 5
 
 		let circleOfRadius: CGFloat = 64
-		let velocityFactor = 40
+		var velocityFactor = 40
 
 		if enemyType == .bomb {
 
@@ -311,6 +311,7 @@ class GameScene: SKScene {
 			enemy = SKSpriteNode(imageNamed: "marx")
 			run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
 			enemy.name = "marx"
+			velocityFactor += 3
 		} else {
 			enemy = SKSpriteNode(imageNamed: "penguin")
 			run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
