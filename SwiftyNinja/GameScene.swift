@@ -261,8 +261,7 @@ class GameScene: SKScene {
 
 		let sceneWidth: CGFloat = 1024
 
-		let AngularVelocityMin: CGFloat = -3
-		let AngularVelocityMax: CGFloat = 3
+		var AngularVelocityRange: ClosedRange<CGFloat> = -3 ... 3
 
 		let randomPositionXMin: Int = 64
 		let randomPositionXMax: Int = 960
@@ -341,7 +340,7 @@ class GameScene: SKScene {
 
 		enemy.physicsBody?.velocity = CGVector(dx: randomXVelocity * velocityFactor, dy: randomYVelocity * velocityFactor)
 
-		let randomAngularVelocity = CGFloat.random(in: AngularVelocityMin ... AngularVelocityMax)
+		let randomAngularVelocity = CGFloat.random(in: AngularVelocityRange)
 		enemy.physicsBody?.angularVelocity = randomAngularVelocity
 
 		addChild(enemy)
