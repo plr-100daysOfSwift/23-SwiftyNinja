@@ -99,7 +99,7 @@ class GameScene: SKScene {
 				if node.position.y < -140 {
 					node.removeAllActions()
 
-					if node.name == "enemy" {
+					if node.name == "enemy" || node.name == "marx" {
 						node.name = ""
 						subtractLife()
 						node.removeFromParent()
@@ -153,11 +153,12 @@ class GameScene: SKScene {
 		let nodesAtPosition = nodes(at: location)
 
 		for case let node as SKSpriteNode in nodesAtPosition {
-			if node.name == "enemy" {
+			if node.name == "enemy" || node.name == "marx" {
 				if let emitter = SKEmitterNode(fileNamed: "sliceHitEnemy") {
 					emitter.position = node.position
 					addChild(emitter)
 				}
+				score += node.name == "marx" ? 5 : 1
 				node.name = ""
 				node.physicsBody?.isDynamic = false
 				let scaleOut = SKAction.scale(to: 0.001, duration: 0.2)
@@ -165,7 +166,6 @@ class GameScene: SKScene {
 				let group = SKAction.group([scaleOut, fadeOut])
 				let seq = SKAction.sequence([group, .removeFromParent()])
 				node.run(seq)
-				score += 1
 				if let index = activeEnemies.firstIndex(of: node) {
 					activeEnemies.remove(at: index)
 				}
@@ -239,11 +239,19 @@ class GameScene: SKScene {
 		let enemy: SKSpriteNode
 
 		enum EnemyType: Int {
-			case bomb, penguin
+			case bomb, marx, penguin
 		}
 		let enemyTypeFactor = 6
 		let enemyTypeKey = Int.random(in: 0 ... enemyTypeFactor)
-		var enemyType: EnemyType = enemyTypeKey == 0 ? .bomb : .penguin
+		var enemyType: EnemyType
+		switch enemyTypeKey {
+		case 0:
+			enemyType = .bomb
+		case 1:
+			enemyType = .marx
+		default:
+			enemyType = .penguin
+		}
 
 		if forceBomb == .never {
 			enemyType = .penguin
@@ -299,6 +307,10 @@ class GameScene: SKScene {
 				enemy.addChild(emitter)
 			}
 
+		} else if enemyType == .marx {
+			enemy = SKSpriteNode(imageNamed: "marx")
+			run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
+			enemy.name = "marx"
 		} else {
 			enemy = SKSpriteNode(imageNamed: "penguin")
 			run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
