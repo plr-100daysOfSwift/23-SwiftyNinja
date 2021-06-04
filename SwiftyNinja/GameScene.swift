@@ -311,6 +311,7 @@ class GameScene: SKScene {
 			run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
 			enemy.name = "marx"
 			velocityFactor += 3
+			AngularVelocityRange = -5 ... 5
 		} else {
 			enemy = SKSpriteNode(imageNamed: "penguin")
 			run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
