@@ -426,7 +426,6 @@ class GameScene: SKScene {
 		guard !isGameEnded else { return }
 
 		isGameEnded = true
-		physicsWorld.speed = 0
 		isUserInteractionEnabled = false
 
 		bombSoundEffect?.stop()
