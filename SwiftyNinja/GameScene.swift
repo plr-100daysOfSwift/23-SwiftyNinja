@@ -449,6 +449,17 @@ class GameScene: SKScene {
 			livesImages[1].texture = SKTexture(imageNamed: "sliceLifeGone")
 			livesImages[2].texture = SKTexture(imageNamed: "sliceLifeGone")
 		}
+
+		let gameOver = SKSpriteNode(imageNamed: "gameover")
+		gameOver.position = CGPoint(x: 512, y: 384)
+		gameOver.zPosition = 3
+		gameOver.alpha = 0
+		addChild(gameOver)
+		let delay = SKAction.wait(forDuration: 1.5)
+		let fadeIn = SKAction.fadeIn(withDuration: 2)
+		let seq = SKAction.sequence([delay, fadeIn])
+		gameOver.run(seq)
+
 	}
 
 	func subtractLife() {
