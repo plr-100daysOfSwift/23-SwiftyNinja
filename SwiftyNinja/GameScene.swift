@@ -173,7 +173,7 @@ class GameScene: SKScene {
 			} else if node.name == "bomb" {
 				guard let bombContainer = node.parent as? SKSpriteNode else { continue }
 				if let emitter = SKEmitterNode(fileNamed: "sliceHitBomb") {
-					emitter.position = node.position
+					emitter.position = bombContainer.position
 					addChild(emitter)
 				}
 
